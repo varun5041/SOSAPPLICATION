@@ -31,31 +31,38 @@ public class MainActivity extends AppCompatActivity {
         phone3 = findViewById(R.id.phone3);
         saveBtn = findViewById(R.id.saveBtn);
 
-        // Create database
-        db = openOrCreateDatabase("UserStore.db", MODE_PRIVATE, null);
+        try {
 
-        // Create table
-        db.execSQL("CREATE TABLE IF NOT EXISTS contacts(" +
-                "pincode TEXT PRIMARY KEY," +
-                "phone1 TEXT," +
-                "phone2 TEXT," +
-                "phone3 TEXT)");
+            // Create database
+            db = openOrCreateDatabase("UserStore.db", MODE_PRIVATE, null);
+
+            // Create table if not exists
+            db.execSQL("CREATE TABLE IF NOT EXISTS contacts(" +
+                    "pincode TEXT PRIMARY KEY," +
+                    "phone1 TEXT," +
+                    "phone2 TEXT," +
+                    "phone3 TEXT)");
+
+        } catch (Exception e) {
+
+            Toast.makeText(this,"DB Error: "+e.getMessage(),Toast.LENGTH_LONG).show();
+        }
 
         saveBtn.setOnClickListener(v -> saveContacts());
     }
 
     private void saveContacts() {
 
-        String p1 = phone1.getText().toString();
-        String p2 = phone2.getText().toString();
-        String p3 = phone3.getText().toString();
+        String p1 = phone1.getText().toString().trim();
+        String p2 = phone2.getText().toString().trim();
+        String p3 = phone3.getText().toString().trim();
 
         if(p1.isEmpty() || p2.isEmpty() || p3.isEmpty()){
             Toast.makeText(this,"Enter all numbers",Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Save user numbers in SharedPreferences
+        // Save numbers locally
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
@@ -66,16 +73,17 @@ public class MainActivity extends AppCompatActivity {
 
         editor.apply();
 
-        // Insert fixed emergency numbers into database
         try {
 
-            db.execSQL("INSERT OR IGNORE INTO contacts VALUES('401404','9221740188','9321661326','9867904968')");
-            db.execSQL("INSERT OR IGNORE INTO contacts VALUES('401102','9221740188','9321661326','9867904968')");
-            db.execSQL("INSERT OR IGNORE INTO contacts VALUES('401303','9221740188','9321661326','9867904968')");
-            db.execSQL("INSERT OR IGNORE INTO contacts VALUES('401202','9221740188','9321661326','9867904968')");
+            // Insert emergency numbers
+            db.execSQL("INSERT OR IGNORE INTO contacts (pincode, phone1, phone2, phone3) VALUES ('401404','9221740188','9321661326','9867904968')");
+            db.execSQL("INSERT OR IGNORE INTO contacts (pincode, phone1, phone2, phone3) VALUES ('401102','9221740188','9321661326','9867904968')");
+            db.execSQL("INSERT OR IGNORE INTO contacts (pincode, phone1, phone2, phone3) VALUES ('401303','9221740188','9321661326','9867904968')");
+            db.execSQL("INSERT OR IGNORE INTO contacts (pincode, phone1, phone2, phone3) VALUES ('401202','9221740188','9321661326','9867904968')");
 
         } catch (Exception e) {
 
+            e.printStackTrace();
             Toast.makeText(this,"Database Error: "+e.getMessage(),Toast.LENGTH_LONG).show();
         }
 

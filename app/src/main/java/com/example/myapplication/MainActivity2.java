@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -31,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     FusedLocationProviderClient fusedLocationClient;
 
-    Button sosBtn, policeBtn, hospitalBtn, flashBtn;
+    Button sosBtn, policeBtn, hospitalBtn, flashBtn, resetBtn;
 
     double latitude;
     double longitude;
@@ -59,6 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
         policeBtn = findViewById(R.id.policeBtn);
         hospitalBtn = findViewById(R.id.hospitalBtn);
         flashBtn = findViewById(R.id.flashBtn);
+        resetBtn = findViewById(R.id.resetBtn);   // FIXED CRASH
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -87,6 +89,40 @@ public class MainActivity2 extends AppCompatActivity {
         hospitalBtn.setOnClickListener(v -> showConfirmation("MEDICAL EMERGENCY"));
 
         flashBtn.setOnClickListener(v -> toggleFlashSOS());
+
+       resetBtn.setOnClickListener(v -> resetApp());
+    }
+
+    // Reset App
+    private void resetApp() {
+        new AlertDialog.Builder(this)
+                .setTitle("Reset App")
+                .setMessage("All saved emergency contacts will be removed. Continue?")
+                .setPositiveButton("YES", (dialog, which) -> {
+
+                    // 1. Clear SharedPreferences
+                    SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.clear();
+                    editor.apply();
+
+                    // 2. Clear SQLite Database (Optional but recommended for a full reset)
+                    db.execSQL("DELETE FROM contacts");
+
+                    // 3. Redirect to Registration Page
+                    // CHANGE 'RegistrationActivity' to your actual first activity name
+                    Intent intent = new Intent(MainActivity2.this, PhoneActivity.class);
+
+                    // This clears the backstack so the user can't press 'Back' to return to the SOS page
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                    Toast.makeText(this, "App Reset Complete", Toast.LENGTH_LONG).show();
+                    finish(); // Close the current activity
+
+                })
+                .setNegativeButton("NO", (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     // Confirmation popup
@@ -95,16 +131,8 @@ public class MainActivity2 extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("Emergency Alert")
                 .setMessage("Are you sure you want to send an emergency alert?")
-                .setPositiveButton("YES",(dialog,which)->{
-
-                    sendEmergencySMS(type);
-
-                })
-                .setNegativeButton("NO",(dialog,which)->{
-
-                    dialog.dismiss();
-
-                })
+                .setPositiveButton("YES",(dialog,which)-> sendEmergencySMS(type))
+                .setNegativeButton("NO",(dialog,which)-> dialog.dismiss())
                 .show();
     }
 
@@ -166,7 +194,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
-    // Send emergency SMS
+    // Send Emergency SMS
     private void sendEmergencySMS(String type) {
 
         try {
@@ -176,7 +204,6 @@ public class MainActivity2 extends AppCompatActivity {
 
             SmsManager smsManager = SmsManager.getDefault();
 
-            // Send to family
             String[] familyNumbers = {fam1, fam2, fam3};
 
             for(String number : familyNumbers){
@@ -187,26 +214,28 @@ public class MainActivity2 extends AppCompatActivity {
                 }
             }
 
-            // Get numbers from database
-            Cursor cursor = db.rawQuery(
-                    "SELECT phone1, phone2, phone3 FROM contacts WHERE pincode=?",
-                    new String[]{userPincode}
-            );
+            if(userPincode != null){
 
-            if(cursor.moveToFirst()){
+                Cursor cursor = db.rawQuery(
+                        "SELECT phone1, phone2, phone3 FROM contacts WHERE pincode=?",
+                        new String[]{userPincode}
+                );
 
-                for(int i=0;i<3;i++){
+                if(cursor.moveToFirst()){
 
-                    String number = cursor.getString(i);
+                    for(int i=0;i<3;i++){
 
-                    if(number != null && !number.isEmpty()){
+                        String number = cursor.getString(i);
 
-                        smsManager.sendTextMessage(number,null,message,null,null);
+                        if(number != null && !number.isEmpty()){
+
+                            smsManager.sendTextMessage(number,null,message,null,null);
+                        }
                     }
                 }
-            }
 
-            cursor.close();
+                cursor.close();
+            }
 
             Toast.makeText(this,"Emergency Alert Sent",Toast.LENGTH_LONG).show();
 
@@ -216,7 +245,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
-    // Flash toggle
+    // Flash SOS
     private void toggleFlashSOS() {
 
         if (!isFlashing) {
@@ -242,7 +271,6 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
-    // Flash blinking loop
     Runnable flashRunnable = new Runnable() {
         @Override
         public void run() {

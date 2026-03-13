@@ -1,53 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F0F4F8"
+    android:padding="24dp">
 
-    <Button
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-black"
+        android:text="RakshaSOS"
+        android:textColor="#1E293B"
+        android:textSize="28sp"
+        android:letterSpacing="-0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/indicator"
+        android:layout_width="32dp"
+        android:layout_height="6dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/holo_red_light"
+        app:layout_constraintStart_toStartOf="@id/title"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sosBtn"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="SOS"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="EMERGENCY SOS"
+        android:textColor="#FF3B30"
         android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="24dp"
+        app:elevation="4dp"
+        app:icon="@drawable/fire_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="16dp"
+        app:iconSize="64dp"
+        app:iconTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/indicator"
+        app:rippleColor="#1AFF3B30" />
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/policeBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/centerGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/policeBtn"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#FFFFFF"
         android:text="POLICE"
-
-        app:layout_constraintTop_toBottomOf="@id/sosBtn"
-        app:layout_constraintBottom_toTopOf="@id/hospitalBtn"
+        android:textColor="#334155"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/police_icon"
+        app:iconGravity="top"
+        app:iconPadding="12dp"
+        app:iconSize="50dp"
+        app:iconTint="@null"
+        app:layout_constraintEnd_toStartOf="@+id/centerGuideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/sosBtn" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/hospitalBtn"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="#FFFFFF"
         android:text="HOSPITAL"
+        android:textColor="#334155"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:cornerRadius="24dp"
+        app:icon="@drawable/hospital_icon"
+        app:iconGravity="top"
+        app:iconPadding="12dp"
+        app:iconSize="50dp"
+        app:iconTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/centerGuideline"
+        app:layout_constraintTop_toTopOf="@+id/policeBtn" />
 
-        app:layout_constraintTop_toBottomOf="@id/policeBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/flashBtn"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="FLASH"
-        android:textSize="18sp"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Flashlight"
+        android:textColor="#334155"
+        android:textSize="16sp"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/flash_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="32dp"
+        app:iconTint="@null"
+        app:layout_constraintTop_toBottomOf="@id/policeBtn" />
 
-        app:layout_constraintTop_toBottomOf="@id/hospitalBtn"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/resetBtn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:text="RESET ALL"
+        android:textColor="#64748B"
+        app:cornerRadius="16dp"
+        app:icon="@drawable/reset"
+        app:iconSize="18dp"
+        app:iconTint="#64748B"
+        app:strokeColor="#CBD5E1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/flashBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

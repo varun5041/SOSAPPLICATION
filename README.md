@@ -3,6 +3,7 @@
 RakshaSOS is an Android-based emergency response application designed to provide instant help during critical situations such as accidents, medical emergencies, or personal safety threats.
 
 The app enables users to send their live location and emergency alerts with a single tap, ensuring that help reaches them as quickly as possible.
+https://github.com/varun5041/SOSAPPLICATION/blob/cac9d2237f24843f1ff7270b3b8cef38722eb503/applogo.png
 
 This project was developed during a 2-hour hackathon.
 

@@ -1,3 +1,9 @@
+
+## 🚨 RakshaSOS
+
+<p align="center">
+  <img src="Screenshots/applogo.png" width="150"/>
+</p>
 # 🚨 RakshaSOS – Emergency SOS Safety App
 
 RakshaSOS is a smart emergency response application designed to provide **instant help during critical situations** such as accidents, medical emergencies, or personal threats.

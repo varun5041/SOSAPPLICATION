@@ -1,119 +1,118 @@
-🚨 RakshaSOS – Emergency SOS App
+# 🚨 RakshaSOS – Emergency SOS Safety App
 
-RakshaSOS is an Android-based emergency response application designed to provide instant help during critical situations such as accidents, medical emergencies, or personal safety threats.
+RakshaSOS is a smart emergency response application designed to provide **instant help during critical situations** such as accidents, medical emergencies, or personal threats.
 
-The app enables users to send their live location and emergency alerts with a single tap, ensuring that help reaches them as quickly as possible.
-![image alt][https://github.com/varun5041/SOSAPPLICATION/blob/cac9d2237f24843f1ff7270b3b8cef38722eb503/applogo.png]
+With **one tap**, the app automatically sends the user's **live location** to nearby hospitals, police stations, and trusted family members.
 
-This project was developed during a 2-hour hackathon.
+It also includes **gyro-based accident detection** which can automatically trigger an emergency alert.
 
-📱 Features
-🆘 One-Tap SOS Alert
+---
 
-With a single tap, the app instantly sends emergency alerts along with the user's live location to:
+# ❗ Problem Statement
 
-Nearby Police Stations
+During emergencies, people often face:
 
-Nearby Hospitals
+• Delay in contacting emergency services
+• Difficulty sharing exact location
+• Panic situations where using a phone becomes difficult
+• Lack of quick communication with family members
 
-Family Members / Emergency Contacts
+Many lives are lost simply because **help arrives too late**.
 
-This reduces the time required to manually search and call emergency services.
+RakshaSOS aims to reduce response time and provide **instant emergency communication**.
 
-📍 Automatic Location Sharing
+---
 
-During an emergency, the app automatically shares the user's GPS location through SMS so responders can quickly locate the victim.
+# 💡 Solution
 
-🚗 Gyroscope Accident Detection
+RakshaSOS provides a **one-click emergency alert system** that:
 
-RakshaSOS uses the device gyroscope sensor to detect sudden impacts or abnormal motion patterns that may indicate an accident.
+• Sends location instantly
+• Alerts family members
+• Detects accidents using phone sensors
+• Notifies nearby emergency services
 
-If an accident is detected:
+This ensures **faster help and potentially saves lives**.
 
-The app automatically triggers the SOS alert
+---
 
-Location is shared with emergency contacts
+# ✨ Features
 
-📲 Panic-Proof Design
+🚨 **One Tap SOS Button**
+Instantly sends emergency alerts with location.
 
-In emergency situations people panic and cannot navigate complex phone interfaces.
+📍 **Live Location Sharing**
+Automatically shares GPS location via SMS.
 
-RakshaSOS solves this by providing a simple one-tap emergency system.
+👨‍👩‍👧 **Family Emergency Contacts**
+Alerts saved family members immediately.
 
-⚠️ Problem Statement
+🏥 **Nearby Hospital Alerts**
+Sends emergency alerts to nearby medical services.
 
-During accidents or medical emergencies, victims often face several problems:
+🚓 **Police Station Notification**
+Notifies nearest police station in critical cases.
 
-Delay in contacting emergency services
+📱 **Gyroscope Accident Detection**
+Detects sudden impacts and triggers SOS automatically.
 
-Difficulty explaining exact location
+---
 
-Panic makes phone navigation difficult
+# ⚙️ Tech Stack
 
-Lack of immediate response from nearby help centers
+Android Studio
+Java
+XML
+Google Location Services
+SMS Manager API
 
-These delays can cost precious lives.
+---
 
-RakshaSOS aims to reduce emergency response time using automation and instant communication.
+# 📦 Installation
 
-🇮🇳 Real-World Context
+1 Clone the repository
 
-Many accident victims in India lose their lives due to delayed medical assistance.
+```
+git clone https://github.com/yourusername/RakshaSOS.git
+```
 
-For example:
+2 Open in Android Studio
 
-Several road accident victims die due to delayed ambulance response
+3 Sync Gradle
 
-Victims lying injured on highways often cannot call for help
+4 Run on Android Device
 
-Bystanders sometimes hesitate to intervene
+---
 
-RakshaSOS helps solve this by automatically sending alerts and location data immediately.
+# ▶️ Usage
 
-🛠️ Tech Stack
+1 Open the RakshaSOS app
+2 Add emergency contacts
+3 Tap the **SOS button** in emergency
+4 Location is automatically sent via SMS
 
-Frontend
+---
 
-XML (Android UI)
+# 📸 Screenshots
 
-Backend
+(Add screenshots here)
 
-Java (Android)
+```
+![Home Screen](images/home.png)
+![SOS Screen](images/sos.png)
+```
 
-APIs / Services
+---
 
-GPS Location Services
-
-SMS Manager
-
-Device Gyroscope Sensor
-
-👨‍💻 Team
-
-This project was developed by:
+# 👨‍💻 Contributors
 
 Varun Soni
-
 Chinmay Raut
-
 Sahil Varma
+Kuldik Kaif
 
-Kuldip Kaif
+---
 
-🎯 Future Improvements
+# 📜 License
 
-Integration with real police and hospital emergency systems
-
-Real-time ambulance tracking
-
-Cloud-based alert system
-
-AI-based accident detection
-
-Voice activated SOS
-
-❤️ Goal
-
-The goal of RakshaSOS is simple:
-
-"One Tap. One Location. One Chance to Save a Life."
+This project is licensed under the MIT License.

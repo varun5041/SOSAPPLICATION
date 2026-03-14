@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication">
+    package="com.example.RakshaSOS">
 
     <!-- Hardware features -->
     <uses-feature
@@ -21,14 +21,14 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="EmergencyApp"
+        android:label="RakshSOS"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.DayNight.NoActionBar">
 
         <!-- Login / Phone verification screen -->
         <activity
-            android:name=".PhoneActivity"
+            android:name="com.example.RakshaSOS.PhoneActivity"
             android:exported="true">
 
             <intent-filter>
@@ -39,10 +39,10 @@
         </activity>
 
         <!-- Enter emergency contacts -->
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.example.RakshaSOS.MainActivity" />
 
         <!-- SOS dashboard -->
-        <activity android:name=".MainActivity2" />
+        <activity android:name="com.example.RakshaSOS.MainActivity2" />
 
     </application>
 

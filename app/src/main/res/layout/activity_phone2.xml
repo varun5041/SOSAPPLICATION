@@ -82,16 +82,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:hint="Enter Phone Number"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
                 app:startIconDrawable="@android:drawable/ic_menu_call">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phoneInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter Phone Number"
-                    android:inputType="phone"/>
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:digits="0123456789"/>
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <!-- Send OTP -->
 
@@ -107,7 +110,6 @@
 
 
             <!-- OTP Field -->
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,14 +123,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:hint="6-Digit Code"
+                app:counterEnabled="true"
+                app:counterMaxLength="6"
                 app:startIconDrawable="@android:drawable/ic_lock_idle_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/otpInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter OTP"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:digits="0123456789"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 

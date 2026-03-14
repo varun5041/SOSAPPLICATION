@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.RakshaSOS;
 
 import org.junit.Test;
 
